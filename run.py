@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
+import random
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -36,3 +37,37 @@ def choose_level():
             print("Invalid choice, please enter 1, 2, or 3.")
 
 level_sheet = choose_level()
+
+def play_game(level_sheet):
+    """
+    Handle the main game loop; asks players for guesses, gives feedback,
+    and tracks the number of guesses
+    """
+    # Get all the numbers from the chosen level sheet
+    numbers = level_sheet.col_values(1)
+    numbers = [int(num) for num in numbers]
+
+    # randomly selects a wanted number from the sheet
+    target = random.choice(numbers)
+
+    print(f"The number to guess is between {min(numbers)} and {max(numbers)}.")
+
+    guesses = 0
+    
+    while True:
+        try:
+            guess = int(input("Enter your guess: "))
+            guesses =+ 1
+            if guess == target:
+                print("Congrats, you guessed the wanted number!")
+                break
+            else:
+                # add feedback logic
+                print("Try again!")
+        except ValueError:
+            print("Please enter a valid number.")
+
+    # returns number of guesses to store later
+    return guesses
+
+number_of_guesses = play_game(level_sheet)
