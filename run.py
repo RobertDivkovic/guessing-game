@@ -38,7 +38,7 @@ def choose_level():
 
 level_sheet = choose_level()
 
-def play_game(level_sheet):
+def play_game(level_sheet, level):
     """
     Handle the main game loop; asks players for guesses, gives feedback,
     and tracks the number of guesses
@@ -62,15 +62,16 @@ def play_game(level_sheet):
                 print("Congrats, you guessed the wanted number!")
                 break
             else:
-                # add feedback logic
-                print("Try again!")
+                # provide feedback based on the guess and level
+                provide_feedback(guess, target, level)
         except ValueError:
             print("Please enter a valid number.")
 
     # returns number of guesses to store later
     return guesses
 
-number_of_guesses = play_game(level_sheet)
+level_sheet = choose_level()
+number_of_guesses = play_game(level_sheet, level)
 
 def store_result(guesses_sheet, player_name, number_of_guesses):
     """
@@ -114,3 +115,21 @@ def provide_feedback(guess, target, level):
         elif abs(guess - target) <= 300:
             print("You are within 300 numbers range of the wanted number.")
 
+def main():
+    while True:
+        # choose level and play the game
+        level_sheet = choose_level()
+        level = level_sheet.title # Get level name
+        player_name = input("Enter your name: ")
+        number_of_guesses = player_game(level_sheet, level)
+
+        # store the result in the guesses sheet
+        store_result(guesses_sheet, player_name, number_of_guesses)
+
+        # Ask if the player wants to play again
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+        if play_again != 'yes':
+            print("Thanks for playing! Goodbye!")
+            break
+if __name__ == "__main__":
+    main()
