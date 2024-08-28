@@ -71,3 +71,18 @@ def play_game(level_sheet):
     return guesses
 
 number_of_guesses = play_game(level_sheet)
+
+def store_result(guesses_sheet, player_name, number_of_guesses):
+    """
+    Stores session result in the 'guesses' sheet,
+    including player name, number of guesses,
+    and the timestamp. It also tracks session ID.
+    """
+
+    session_id = len(guesses_sheet.get_all_values()) + 1
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    guesses_sheet.append_row([session_id, player_name, number_of_guesses, timestamp])
+
+player_name = input("Enter your name: ")
+store_result(guesses_sheet, player_name, number_of_guesses)
