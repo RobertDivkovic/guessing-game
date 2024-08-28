@@ -115,6 +115,24 @@ def provide_feedback(guess, target, level):
         elif abs(guess - target) <= 300:
             print("You are within 300 numbers range of the wanted number.")
 
+def display_summary(guesses_sheet, player_name):
+    """
+    Displays the game summary for the player by
+    retrieving their session data from 'guesses' sheet.
+    """
+    # get all datra from the sheet
+    record = guesses_sheet.get_all_records()
+
+    # Findthe records for player
+    player_records = [record for record in records if record['Player Name'] == player_name]
+
+    if player_records:
+        print("\nGame Summary:")
+        for record in player_records:
+            print(f"Session ID: {record['Session ID']}, Number of Guesses: {record['Number of guesses']}, Timestamp: {record['Timestamp']}")
+    else:
+        print("No records found for this player.") 
+
 def main():
     while True:
         # choose level and play the game
@@ -133,3 +151,5 @@ def main():
             break
 if __name__ == "__main__":
     main()
+    player_name = input("Enter your name to view your game summary: ")
+    display_summary(guesses_sheet, player_name)
