@@ -86,3 +86,31 @@ def store_result(guesses_sheet, player_name, number_of_guesses):
 
 player_name = input("Enter your name: ")
 store_result(guesses_sheet, player_name, number_of_guesses)
+
+def provide_feedback(guess, target, level):
+    """
+    Provide feedback based on how close is the guess to the wanted number.
+    Depending on level, the feedback will vary.
+    """
+    if level == 'easy':
+        if abs(guess - target) <= 5:
+            print("You are within 5 numbers range of the wanted number.")
+        elif abs(guess - target) <= 10:
+            print("You are within 10 numbers range of the wanted number.")
+        elif abs(guess - target) <= 20:
+            print("You are within 20 numbers range of the wanted number.")
+    elif level == 'moderate':
+        if abs(guess - target) <= 10:
+            print("You are within 10 numbers range of the wanted number.")
+        elif abs(guess - target) <= 25:
+            print("You are within 25 numbers range of the wanted number.")
+        elif abs(guess - target) <= 50:
+            print("You are within 50 numbers range of the wanted number.")
+    elif level == 'challenging':
+        if abs(guess - target) <= 50:
+            print("You are within 50 numbers range of the wanted number.")
+        elif abs(guess - target) <= 150:
+            print("You are within 150 numbers range of the wanted number.")
+        elif abs(guess - target) <= 300:
+            print("You are within 300 numbers range of the wanted number.")
+
