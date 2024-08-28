@@ -16,6 +16,7 @@ SHEET = GSPREAD_CLIENT.open('guessing_game')
 
 guesses_sheet = SHEET.worksheet('guesses')
 
+
 def choose_level():
     """
     Prompt players to select which difficulty level they want and
@@ -52,7 +53,7 @@ def play_game(level_sheet, level):
     print(f"The number to guess is between {min(numbers)} and {max(numbers)}.")
 
     guesses = 0
-    
+
     while True:
         try:
             guess = int(input("Enter your guess: "))
@@ -69,8 +70,10 @@ def play_game(level_sheet, level):
     # returns number of guesses to store later
     return guesses
 
+
 level_sheet = choose_level()
 number_of_guesses = play_game(level_sheet, 'easy')
+
 
 def store_result(guesses_sheet, player_name, number_of_guesses):
     """
@@ -82,10 +85,13 @@ def store_result(guesses_sheet, player_name, number_of_guesses):
     session_id = len(guesses_sheet.get_all_values()) + 1
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-    guesses_sheet.append_row([session_id, player_name, number_of_guesses, timestamp])
+    guesses_sheet.append_row([session_id, player_name, number_of_guesses,
+timestamp])
+
 
 player_name = input("Enter your name: ")
 store_result(guesses_sheet, player_name, number_of_guesses)
+
 
 def provide_feedback(guess, target, level):
     """
@@ -114,6 +120,7 @@ def provide_feedback(guess, target, level):
         elif abs(guess - target) <= 300:
             print("You are within 300 numbers range of the wanted number.")
 
+
 def display_summary(guesses_sheet, player_name):
     """
     Displays the game summary for the player by
@@ -123,20 +130,22 @@ def display_summary(guesses_sheet, player_name):
     records = guesses_sheet.get_all_records()
 
     # Findthe records for player
-    player_records = [record for record in records if record['Player Name'] == player_name]
+    player_records = [record for record in records if record['Player Name'] ==
+    player_name]
 
     if player_records:
         print("\nGame Summary:")
         for record in player_records:
             print(f"Session ID: {record['Session ID']}, Number of Guesses: {record['Number of guesses']}, Timestamp: {record['Timestamp']}")
     else:
-        print("No records found for this player.") 
+        print("No records found for this player.")
+
 
 def main():
     while True:
         # choose level and play the game
         level_sheet = choose_level()
-        level = level_sheet.title # Get level name
+        level = level_sheet.title  # Get level name
         player_name = input("Enter your name: ")
         number_of_guesses = play_game(level_sheet, level)
 
@@ -148,6 +157,8 @@ def main():
         if play_again != 'yes':
             print("Thanks for playing! Goodbye!")
             break
+
+
 if __name__ == "__main__":
     main()
     player_name = input("Enter your name to view your game summary: ")
