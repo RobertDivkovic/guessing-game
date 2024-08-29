@@ -74,3 +74,13 @@ Example:
 
 - **`store_result(guesses_sheet, player_name, number_of_guesses)`**: Saves the game session details in the `guesses` worksheet.
 - **`update_leaderboard(player_name, number_of_guesses, level)`**: Updates the leaderboard if the player's score is among the top 10. The leaderboard is sorted by the number of guesses, with the lowest number at the top.
+
+## Deployment
+
+The project was deployed using [Heroku](https://www.heroku.com/) following these steps:
+
+1. Fork or clone the repository.
+2. Create a new Heroku app.
+3. Set the buildpacks to Python.
+4. Link the Heroku app to the repository.
+5. Deploy the app.
