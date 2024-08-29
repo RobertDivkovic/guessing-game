@@ -30,3 +30,14 @@ This is a Python terminal game that allows players to guess a number, keep track
 - **Customization:** Allow players to set their own number ranges and difficulties.
 - **Multiplayer Mode:** Add support for multiplayer sessions where players compete for the best score.
 - **Enhanced Leaderboard:** Include additional statistics such as the fastest time to guess the number.
+
+## Data Model
+
+This game uses Google Sheets to store and manage player data, ensuring persistence and real-time updates.
+
+### 1. Google Sheets Integration
+
+The game uses the `gspread` library to interact with Google Sheets. Two main worksheets are utilized:
+
+- **Guesses Worksheet (`guesses`):** Stores each player's game session data.
+- **Leaderboard Worksheet (`leaderboard`):** Tracks the top 10 player scores across all difficulty levels.
