@@ -84,20 +84,19 @@ def play_game(level_sheet, level):
     guesses = 0
 
     while True:
-            guess = input("Enter your guess: \n")
-            
-            # Validate that the input is a number
-            if guess.isdigit():
-                guess = int(guess)
-                guesses += 1
-                if guess == target:
-                    print("Congrats, you guessed the wanted number!\n")
-                    break
-                else:
-                    # provide feedback based on the guess and level
-                    provide_feedback(guess, target, level)
+        guess = input("Enter your guess: \n")
+        # Validate that the input is a number
+        if guess.isdigit():
+            guess = int(guess)
+            guesses += 1
+            if guess == target:
+                print("Congrats, you guessed the wanted number!\n")
+                break
             else:
-                print("Input invalid. Please enter a valid number.")
+                # provide feedback based on the guess and level
+                provide_feedback(guess, target, level)
+        else:
+            print("Input invalid. Please enter a valid number.")
     # returns number of guesses to store later
     return guesses
 
@@ -251,13 +250,25 @@ def main():
         update_leaderboard(player_name, number_of_guesses, level)
 
         # Ask if the player wants to view the leaderboard
-        view_leaderboard = input
-        ("Do you want to view the leaderboard? (yes/no): ").lower()
+        while True:
+            view_leaderboard = input(
+                "Do you want to view the leaderboard? (yes/no): ").lower()
+            if view_leaderboard in ['yes', 'no']:
+                break
+            else:
+                print("Invalid input. Please enter 'yes' or 'no'.")
+
         if view_leaderboard == 'yes':
             display_leaderboard()
 
         # Ask if the player wants to play again
-        play_again = input("Do you want to play again? (yes/no): ").lower()
+        while True:
+            play_again = input("Do you want to play again? (yes/no): ").lower()
+            if play_again in ['yes', 'no']:
+                break
+            else:
+                print("Invalid input. Please enter 'yes' or 'no'.")
+
         if play_again != 'yes':
             print("Thanks for playing! Goodbye!")
             break
