@@ -24,11 +24,11 @@ def choose_level():
     Validates input of expected values.
     """
     levels = {'1': 'easy', '2': 'moderate', '3': 'challenging'}
-    print("\nHello, welcome to Guessing Game.\n")
-    print("Choose your difficulty level:\n")
-    print("1: Easy (1-50)\n")
-    print("2: Moderate (1-100)\n")
-    print("3: Challenging (1-1000)\n")
+    print("\nHello, welcome to numbers guessing game.\n")
+    print("Choose your difficulty level and find the wanted number:\n")
+    print("1: Easy (1-50 numbers)\n")
+    print("2: Moderate (1-100 numbers)\n")
+    print("3: Challenging (1-1000 numbers)\n")
 
     while True:
         choice = input("Enter the number corresponding to your choice: \n")
