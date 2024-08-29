@@ -159,6 +159,72 @@ def main():
             break
 
 
+def update_leaderboard(player_name, number_of_guesses, level):
+    """
+    Updates 'leaderboard' sheet with players score if
+    it qualifies to be in the top 10 scores.
+    Combine scores across all levels.
+    """
+    leaderboard_sheet = SHEET.worksheet('leaderboard')
+    leaderboard = leaderboard_sheet.get_all_values()[1:]  # Excludes header row
+
+    # conveert leaderboard data to list of dictionaries
+    leaderboard = [
+        {
+            'Player Name': row[0], 
+            'Number of Guesses': int(row[1]), 
+            'Timestamp': row[2], 
+            'Level': row[3]
+        }
+        for row in leaderboard
+    ]
+
+    # Add the player's score to the leaderboard
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    new_entry = {
+        'Player Name': player_name,
+        'Number of Guesses': number_of_guesses,
+        'Timestamp': timestamp,
+        'Level': level
+    }
+    leaderboard.append(new_entry)
+    
+    # Sort leaderboard by the number of guesses (ascending order)
+    leaderboard = sorted(leaderboard, key=lambda x: x['Number of Guesses'])
+    
+    # Keep only the top 10 scores
+    leaderboard = leaderboard[:10]
+    
+    # Clear the current leaderboard sheet and write the updated leaderboard
+    leaderboard_sheet.clear()
+    leaderboard_sheet.append_row(['Player Name', 'Number of Guesses', 'Timestamp', 'Level'])
+    for entry in leaderboard:
+        leaderboard_sheet.append_row([
+            entry['Player Name'], 
+            entry['Number of Guesses'], 
+            entry['Timestamp'], 
+            entry['Level']
+        ])
+
+
+def display_leaderboard():
+    """
+    Displays the top 10 players on the combined leaderboard.
+    """
+    leaderboard_sheet = SHEET.worksheet('leaderboard')
+    leaderboard = leaderboard_sheet.get_all_values()[1:]  # Exclude header row
+    
+    if not leaderboard:
+        print("The leaderboard is currently empty.")
+        return
+    
+    print("\n--- Leaderboard ---")
+    for idx, row in enumerate(leaderboard, start=1):
+        print(f"{idx}. {row[0]} - {row[1]} guesses on {row[2]} (Level: {row[3]})")
+    print("-------------------")
+
+
+
 if __name__ == "__main__":
     main()
     player_name = input("Enter your name to view your game summary: ")
