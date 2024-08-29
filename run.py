@@ -218,13 +218,13 @@ def main():
     The main loop for the number guessing game.
 
     This function controls the overall flow of the game, including:
-    - Prompting the player to choose a difficulty level.
-    - Collecting the player's name.
-    - Running the game session where the player guesses the number.
-    - Storing the results of the game in a Google Sheets worksheet.
-    - Updating the leaderboard if the player's score qualifies.
-    - Asking the player if they want to view the leaderboard.
-    - Asking the player if they want to play again.
+    Prompting the player to choose a difficulty level.
+    Collecting the player's name and ensuring it contains only letters.
+    Running the game session where the player guesses the number.
+    Storing the results of the game in a Google Sheets worksheet.
+    Updating the leaderboard if the player's score qualifies.
+    Asking the player if they want to view the leaderboard, accepting only "yes" or "no" responses.
+    Asking the player if they want to play again, accepting only "yes" or "no" responses.
 
     The game will continue in a loop, allowing the player to play multiple
     sessions until they choose to quit.
