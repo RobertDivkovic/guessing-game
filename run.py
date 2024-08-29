@@ -24,18 +24,19 @@ def choose_level():
     Validates input of expected values.
     """
     levels = {'1': 'easy', '2': 'moderate', '3': 'challenging'}
-    print("Choose your difficulty level:")
-    print("1: Easy (1-50)")
-    print("2: Moderate (1-100)")
-    print("3: Challenging (1-1000)")
+    print("\nHello, welcome to Guessing Game.\n")
+    print("Choose your difficulty level:\n")
+    print("1: Easy (1-50)\n")
+    print("2: Moderate (1-100)\n")
+    print("3: Challenging (1-1000)\n")
 
     while True:
-        choice = input("Enter the number corresponding to your choice: ")
+        choice = input("Enter the number corresponding to your choice: \n")
         if choice in levels:
-            print(f"Your have chosen the {levels[choice]} level.")
+            print(f"Your have chosen the {levels[choice]} level.\n")
             return SHEET.worksheet(levels[choice])
         else:
-            print("Invalid choice, please enter 1, 2, or 3.")
+            print("Invalid choice, please enter 1, 2, or 3.\n")
 
 
 def provide_feedback(guess, target, level):
@@ -45,25 +46,25 @@ def provide_feedback(guess, target, level):
     """
     if level == 'easy':
         if abs(guess - target) <= 5:
-            print("You are within 5 numbers range of the wanted number.")
+            print("You are within 5 numbers range of the wanted number.\n")
         elif abs(guess - target) <= 10:
-            print("You are within 10 numbers range of the wanted number.")
+            print("You are within 10 numbers range of the wanted number.\n")
         elif abs(guess - target) <= 20:
-            print("You are within 20 numbers range of the wanted number.")
+            print("You are within 20 numbers range of the wanted number.\n")
     elif level == 'moderate':
         if abs(guess - target) <= 10:
-            print("You are within 10 numbers range of the wanted number.")
+            print("You are within 10 numbers range of the wanted number.\n")
         elif abs(guess - target) <= 25:
-            print("You are within 25 numbers range of the wanted number.")
+            print("You are within 25 numbers range of the wanted number.\n")
         elif abs(guess - target) <= 50:
-            print("You are within 50 numbers range of the wanted number.")
+            print("You are within 50 numbers range of the wanted number.\n")
     elif level == 'challenging':
         if abs(guess - target) <= 50:
-            print("You are within 50 numbers range of the wanted number.")
+            print("You are within 50 numbers range of the wanted number.\n")
         elif abs(guess - target) <= 150:
-            print("You are within 150 numbers range of the wanted number.")
+            print("You are within 150 numbers range of the wanted number.\n")
         elif abs(guess - target) <= 300:
-            print("You are within 300 numbers range of the wanted number.")
+            print("You are within 300 numbers range of the wanted number.\n")
 
 
 def play_game(level_sheet, level):
@@ -78,16 +79,16 @@ def play_game(level_sheet, level):
     # randomly selects a wanted number from the sheet
     target = random.choice(numbers)
 
-    print(f"The number to guess is between {min(numbers)} and {max(numbers)}.")
+    print(f"\nThe number to guess is between {min(numbers)} and {max(numbers)}.\n")
 
     guesses = 0
 
     while True:
         try:
-            guess = int(input("Enter your guess: "))
+            guess = int(input("Enter your guess: \n"))
             guesses += 1
             if guess == target:
-                print("Congrats, you guessed the wanted number!")
+                print("Congrats, you guessed the wanted number!\n")
                 break
             else:
                 # provide feedback based on the guess and level
@@ -126,9 +127,9 @@ def display_summary(guesses_sheet, player_name):
     if player_records:
         print("\nGame Summary:")
         for record in player_records:
-            print(f"Session ID: {record['Session ID']}, Number of Guesses: {record['Number of guesses']}, Timestamp: {record['Timestamp']}")
+            print(f"\nSession ID: {record['Session ID']}, Number of Guesses: {record['Number of guesses']}, Timestamp: {record['Timestamp']}\n")
     else:
-        print("No records found for this player.")
+        print("No records found for this player.\n")
 
 
 def update_leaderboard(player_name, number_of_guesses, level):
@@ -187,7 +188,7 @@ def display_leaderboard():
     leaderboard = leaderboard_sheet.get_all_values()[1:]  # Exclude header row
     
     if not leaderboard:
-        print("The leaderboard is currently empty.")
+        print("The leaderboard is currently empty.\n")
         return
     
     print("\n--- Leaderboard ---")
@@ -198,14 +199,10 @@ def display_leaderboard():
 
 def main():
     while True:
-        print("Debug: Starting a new game loop")
-
         # choose level and play the game
         level_sheet = choose_level()
         level = level_sheet.title  # Get level name
         player_name = input("Enter your name: ")
-
-        print("Debug: Starting the game")
 
         number_of_guesses = play_game(level_sheet, level)
 
@@ -225,8 +222,6 @@ def main():
         if play_again != 'yes':
             print("Thanks for playing! Goodbye!")
             break
-        else:
-            print("Debug: Player chose to play again")
 
 
 if __name__ == "__main__":
