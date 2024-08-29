@@ -99,10 +99,6 @@ def play_game(level_sheet, level):
     return guesses
 
 
-level_sheet = choose_level()
-number_of_guesses = play_game(level_sheet, 'easy')
-
-
 def store_result(guesses_sheet, player_name, number_of_guesses):
     """
     Stores session result in the 'guesses' sheet,
@@ -113,12 +109,7 @@ def store_result(guesses_sheet, player_name, number_of_guesses):
     session_id = len(guesses_sheet.get_all_values()) + 1
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-    guesses_sheet.append_row([session_id, player_name, number_of_guesses,
-timestamp])
-
-
-player_name = input("Enter your name: ")
-store_result(guesses_sheet, player_name, number_of_guesses)
+    guesses_sheet.append_row([session_id, player_name, number_of_guesses, timestamp])
 
 
 def display_summary(guesses_sheet, player_name):
@@ -130,8 +121,7 @@ def display_summary(guesses_sheet, player_name):
     records = guesses_sheet.get_all_records()
 
     # Findthe records for player
-    player_records = [record for record in records if record['Player Name'] ==
-    player_name]
+    player_records = [record for record in records if record['Player Name'] == player_name]
 
     if player_records:
         print("\nGame Summary:")
@@ -153,9 +143,9 @@ def update_leaderboard(player_name, number_of_guesses, level):
     # conveert leaderboard data to list of dictionaries
     leaderboard = [
         {
-            'Player Name': row[0], 
-            'Number of Guesses': int(row[1]), 
-            'Timestamp': row[2], 
+            'Player Name': row[0],
+            'Number of Guesses': int(row[1]),
+            'Timestamp': row[2],
             'Level': row[3]
         }
         for row in leaderboard
@@ -182,9 +172,9 @@ def update_leaderboard(player_name, number_of_guesses, level):
     leaderboard_sheet.append_row(['Player Name', 'Number of Guesses', 'Timestamp', 'Level'])
     for entry in leaderboard:
         leaderboard_sheet.append_row([
-            entry['Player Name'], 
-            entry['Number of Guesses'], 
-            entry['Timestamp'], 
+            entry['Player Name'],
+            entry['Number of Guesses'],
+            entry['Timestamp'],
             entry['Level']
         ])
 
@@ -208,10 +198,15 @@ def display_leaderboard():
 
 def main():
     while True:
+        print("Debug: Starting a new game loop")
+
         # choose level and play the game
         level_sheet = choose_level()
         level = level_sheet.title  # Get level name
         player_name = input("Enter your name: ")
+
+        print("Debug: Starting the game")
+
         number_of_guesses = play_game(level_sheet, level)
 
         # store the result in the guesses sheet
@@ -230,9 +225,9 @@ def main():
         if play_again != 'yes':
             print("Thanks for playing! Goodbye!")
             break
+        else:
+            print("Debug: Player chose to play again")
 
 
 if __name__ == "__main__":
     main()
-    player_name = input("Enter your name to view your game summary: ")
-    display_summary(guesses_sheet, player_name)
