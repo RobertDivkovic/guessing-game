@@ -79,7 +79,7 @@ def play_game(level_sheet, level):
     # randomly selects a wanted number from the sheet
     target = random.choice(numbers)
 
-    print(f"\nThe number to guess is between {min(numbers)} and {max(numbers)}.\n")
+    print(f"The number to guess is between {min(numbers)} and {max(numbers)}.")
 
     guesses = 0
 
@@ -110,7 +110,13 @@ def store_result(guesses_sheet, player_name, number_of_guesses):
     session_id = len(guesses_sheet.get_all_values()) + 1
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
-    guesses_sheet.append_row([session_id, player_name, number_of_guesses, timestamp])
+    guesses_sheet.append_row([
+        session_id,
+        player_name,
+        number_of_guesses,
+        timestamp
+    ]
+    )
 
 
 def display_summary(guesses_sheet, player_name):
@@ -121,13 +127,17 @@ def display_summary(guesses_sheet, player_name):
     # get all datra from the sheet
     records = guesses_sheet.get_all_records()
 
-    # Findthe records for player
-    player_records = [record for record in records if record['Player Name'] == player_name]
+    # Find the records for player
+    player_records = (
+        [record for record in records if record['Player Name'] == player_name])
 
     if player_records:
         print("\nGame Summary:")
         for record in player_records:
-            print(f"\nSession ID: {record['Session ID']}, Number of Guesses: {record['Number of guesses']}, Timestamp: {record['Timestamp']}\n")
+            print(
+                f"\nSession ID: {record['Session ID']}, "
+                f"Number of Guesses: {record['Number of guesses']}, "
+                f"Timestamp: {record['Timestamp']}\n")
     else:
         print("No records found for this player.\n")
 
@@ -167,7 +177,13 @@ def update_leaderboard(player_name, number_of_guesses, level):
     leaderboard = leaderboard[:10]
     # Clear the current leaderboard sheet and write the updated leaderboard
     leaderboard_sheet.clear()
-    leaderboard_sheet.append_row(['Player Name', 'Number of Guesses', 'Timestamp', 'Level'])
+    row_data = [
+        'Player Name',
+        'Number of Guesses',
+        'Timestamp',
+        'Level']
+    leaderboard_sheet.append_row(row_data)
+
     for entry in leaderboard:
         leaderboard_sheet.append_row([
             entry['Player Name'],
@@ -190,7 +206,9 @@ def display_leaderboard():
 
     print("\n--- Leaderboard ---")
     for idx, row in enumerate(leaderboard, start=1):
-        print(f"{idx}. {row[0]} - {row[1]} guesses on {row[2]} (Level: {row[3]})")
+        print(
+            f"{idx}. {row[0]} - {row[1]} guesses on {row[2]} "
+            f"(Level: {row[3]})")
     print("-------------------")
 
 
@@ -210,7 +228,8 @@ def main():
         update_leaderboard(player_name, number_of_guesses, level)
 
         # Ask if the player wants to view the leaderboard
-        view_leaderboard = input("Do you want to view the leaderboard? (yes/no): ").lower()
+        view_leaderboard = input
+        ("Do you want to view the leaderboard? (yes/no): ").lower()
         if view_leaderboard == 'yes':
             display_leaderboard()
 
