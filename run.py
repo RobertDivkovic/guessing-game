@@ -84,18 +84,20 @@ def play_game(level_sheet, level):
     guesses = 0
 
     while True:
-        try:
-            guess = int(input("Enter your guess: \n"))
-            guesses += 1
-            if guess == target:
-                print("Congrats, you guessed the wanted number!\n")
-                break
+            guess = input("Enter your guess: \n")
+            
+            # Validate that the input is a number
+            if guess.isdigit():
+                guess = int(guess)
+                guesses += 1
+                if guess == target:
+                    print("Congrats, you guessed the wanted number!\n")
+                    break
+                else:
+                    # provide feedback based on the guess and level
+                    provide_feedback(guess, target, level)
             else:
-                # provide feedback based on the guess and level
-                provide_feedback(guess, target, level)
-        except ValueError:
-            print("Please enter a valid number.")
-
+                print("Input invalid. Please enter a valid number.")
     # returns number of guesses to store later
     return guesses
 
