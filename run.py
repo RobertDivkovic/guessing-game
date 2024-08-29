@@ -232,7 +232,13 @@ def main():
         # choose level and play the game
         level_sheet = choose_level()
         level = level_sheet.title  # Get level name
-        player_name = input("Enter your name: ")
+        # Validate player's name input
+        while True:
+            player_name = input("Enter your name: ")
+            if player_name.isalpha():
+                break
+            else:
+                print("Invalid name. Please use letters only.")
 
         number_of_guesses = play_game(level_sheet, level)
 
