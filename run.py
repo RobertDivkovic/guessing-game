@@ -141,24 +141,6 @@ def display_summary(guesses_sheet, player_name):
         print("No records found for this player.")
 
 
-def main():
-    while True:
-        # choose level and play the game
-        level_sheet = choose_level()
-        level = level_sheet.title  # Get level name
-        player_name = input("Enter your name: ")
-        number_of_guesses = play_game(level_sheet, level)
-
-        # store the result in the guesses sheet
-        store_result(guesses_sheet, player_name, number_of_guesses)
-
-        # Ask if the player wants to play again
-        play_again = input("Do you want to play again? (yes/no): ").lower()
-        if play_again != 'yes':
-            print("Thanks for playing! Goodbye!")
-            break
-
-
 def update_leaderboard(player_name, number_of_guesses, level):
     """
     Updates 'leaderboard' sheet with players score if
@@ -211,7 +193,7 @@ def display_leaderboard():
     """
     Displays the top 10 players on the combined leaderboard.
     """
-    leaderboard_sheet = SHEET.worksheet('leaderboard')
+    leaderboard_sheet = SHEET.worksheet('Leaderboard')
     leaderboard = leaderboard_sheet.get_all_values()[1:]  # Exclude header row
     
     if not leaderboard:
@@ -223,6 +205,31 @@ def display_leaderboard():
         print(f"{idx}. {row[0]} - {row[1]} guesses on {row[2]} (Level: {row[3]})")
     print("-------------------")
 
+
+def main():
+    while True:
+        # choose level and play the game
+        level_sheet = choose_level()
+        level = level_sheet.title  # Get level name
+        player_name = input("Enter your name: ")
+        number_of_guesses = play_game(level_sheet, level)
+
+        # store the result in the guesses sheet
+        store_result(guesses_sheet, player_name, number_of_guesses)
+
+        # Update the leaderboard with the player's score
+        update_leaderboard(player_name, number_of_guesses, level)
+
+        # Ask if the player wants to view the leaderboard
+        view_leaderboard = input("Do you want to view the leaderboard? (yes/no): ").lower()
+        if view_leaderboard == 'yes':
+            display_leaderboard()
+
+        # Ask if the player wants to play again
+        play_again = input("Do you want to play again? (yes/no): ").lower()
+        if play_again != 'yes':
+            print("Thanks for playing! Goodbye!")
+            break
 
 
 if __name__ == "__main__":
