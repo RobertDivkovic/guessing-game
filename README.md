@@ -24,3 +24,9 @@ This is a Python terminal game that allows players to guess a number, keep track
 - **Guess Feedback:** The game provides feedback on whether the guess is too high, too low, or correct.
 - **Leaderboard:** The top players are tracked in a Google Sheets leaderboard, which is updated after each game.
 - **Error Handling:** The game handles invalid inputs (e.g., non-numeric input, out-of-bounds numbers) and guides the player to make valid guesses.
+
+### Future Features
+
+- **Customization:** Allow players to set their own number ranges and difficulties.
+- **Multiplayer Mode:** Add support for multiplayer sessions where players compete for the best score.
+- **Enhanced Leaderboard:** Include additional statistics such as the fastest time to guess the number.
