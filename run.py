@@ -161,13 +161,10 @@ def update_leaderboard(player_name, number_of_guesses, level):
         'Level': level
     }
     leaderboard.append(new_entry)
-    
     # Sort leaderboard by the number of guesses (ascending order)
     leaderboard = sorted(leaderboard, key=lambda x: x['Number of Guesses'])
-    
     # Keep only the top 10 scores
     leaderboard = leaderboard[:10]
-    
     # Clear the current leaderboard sheet and write the updated leaderboard
     leaderboard_sheet.clear()
     leaderboard_sheet.append_row(['Player Name', 'Number of Guesses', 'Timestamp', 'Level'])
@@ -186,11 +183,11 @@ def display_leaderboard():
     """
     leaderboard_sheet = SHEET.worksheet('leaderboard')
     leaderboard = leaderboard_sheet.get_all_values()[1:]  # Exclude header row
-    
+
     if not leaderboard:
         print("The leaderboard is currently empty.\n")
         return
-    
+
     print("\n--- Leaderboard ---")
     for idx, row in enumerate(leaderboard, start=1):
         print(f"{idx}. {row[0]} - {row[1]} guesses on {row[2]} (Level: {row[3]})")
