@@ -90,6 +90,10 @@ Example:
 - **Edge Cases:** Tested with invalid inputs, such as non-numeric entries, to ensure the game handles errors gracefully.
 - **PEP8 Compliance:** The code was linted using PEP8 to ensure compliance with Python coding standards.
 
+### Validator Testing
+
+- No errors were returned from (https://pep8ci.herokuapp.com/#)
+
 ## Bugs
 
 ### Solved Bugs
@@ -102,6 +106,26 @@ Example:
 
 - None.
 
+### Errors
+
+- None.
+
+### Warnings
+
+- None.
+
+## Technologies Used
+
+This project was developed using the following technologies:
+
+- **Python**: The core programming language used to build the game's logic and interact with external services.
+- **gspread**: A Python API client that allows easy access and manipulation of Google Sheets.
+- **Google Sheets API**: Used to store and manage game data, such as player names, guesses, and leaderboard scores.
+- **Heroku**: A cloud platform used to deploy and host the application.
+- **Git**: Version control system used to manage code changes and collaboration.
+- **GitHub**: Hosting service for the project's repository, facilitating version control and collaboration.
+- **datetime**: Python's built-in module used for handling date and time, particularly for timestamping game sessions.
+- **random**: Python's built-in module used to generate random numbers, forming the basis of the guessing game.
 
 ## Deployment
 
@@ -170,11 +194,11 @@ The project was deployed using [Heroku](https://www.heroku.com/) following these
 - **Content:** All game content and logic were developed by Robert Divkovic.
 - **Google Sheets API Documentation:** [Google Sheets API](https://developers.google.com/sheets/api) - Used for integrating Google Sheets with the game.
 
-### Code
+## Code
 
-#### Inspiration
+- Inspiration
 - [Code Institute, Love Sandwiches](https://github.com/RobertDivkovic/love-sandwiches)
-#### Inspiration
+- Inspiration
 - [Stack Overflow] (https://stackoverflow.com/)
 
-## Thank you for playing "Guessing Game"!
+### Thank you for playing "Guessing Game"!
