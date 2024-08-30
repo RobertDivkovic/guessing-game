@@ -196,9 +196,8 @@ The project was deployed using [Heroku](https://www.heroku.com/) following these
 
 ## Code
 
-- Inspiration
+### Inspiration
 - [Code Institute, Love Sandwiches](https://github.com/RobertDivkovic/love-sandwiches)
-- Inspiration
-- [Stack Overflow] (https://stackoverflow.com/)
+- [Stack Overflow](https://stackoverflow.com/)
 
 ### Thank you for playing "Guessing Game"!
