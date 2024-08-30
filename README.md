@@ -36,6 +36,10 @@ This is a Python terminal game that allows players to guess a number, keep track
 - **Multiplayer Mode:** Add support for multiplayer sessions where players compete for the best score.
 - **Enhanced Leaderboard:** Include additional statistics such as the fastest time to guess the number.
 
+## Flow chart
+
+![alt text](docs/flowchart/flowchart1.png)
+
 ## Data Model
 
 This game uses Google Sheets to store and manage player data, ensuring persistence and real-time updates.
@@ -84,8 +88,59 @@ Example:
 
 The project was deployed using [Heroku](https://www.heroku.com/) following these steps:
 
-1. Fork or clone the repository.
-2. Create a new Heroku app.
-3. Set the buildpacks to Python.
-4. Link the Heroku app to the repository.
-5. Deploy the app.
+### Steps to Deploy
+
+1. **Create a Heroku Account**
+
+   - If you don’t already have one, create a free account at [Heroku](https://signup.heroku.com/).
+
+2. **Install the Heroku CLI (Optional)**
+
+   - While the Heroku CLI isn't necessary if you're using the Heroku app, it can be useful for managing your app from the command line. You can install it from [here](https://devcenter.heroku.com/articles/heroku-cli).
+
+3. **Log in to Heroku**
+
+   - Open the Heroku app on your device and log in using your credentials.
+
+4. **Create a New Heroku App**
+
+   - Click on the "New" button in the Heroku Dashboard and select "Create new app."
+   - Give your app a unique name and select your preferred region (United States or Europe).
+   - Click "Create app."
+
+5. **Connect to GitHub Repository**
+
+   - In your app's dashboard, navigate to the "Deploy" tab.
+   - Under "Deployment method," select "GitHub."
+   - Click "Connect to GitHub" and authorize Heroku to access your GitHub account if needed.
+   - Search for your repository by name and click "Connect."
+
+6. **Enable Automatic Deploys (Optional)**
+
+   - If you want Heroku to automatically deploy the latest version of your code every time you push to GitHub, click "Enable Automatic Deploys."
+
+7. **Manual Deployment**
+
+   - To deploy manually, scroll down to the "Manual deploy" section.
+   - Select the branch you want to deploy (usually `main` or `master`).
+   - Click "Deploy Branch."
+   - Heroku will begin building your app. You can view the build process in the activity feed.
+
+8. **Set Up the Environment (Optional)**
+
+   - If your application requires environment variables (e.g., API keys, secrets), go to the "Settings" tab.
+   - Click "Reveal Config Vars" and add the necessary key-value pairs.
+
+9. **Scale the Application (Optional)**
+
+   - By default, Heroku runs one web dyno. If your app needs more dynos (e.g., for workers), you can scale it in the "Resources" tab.
+   - Simply slide the web or worker dynos to the desired number.
+
+10. **View Your Application**
+
+    - Once deployed, click "Open app" from the Heroku dashboard to view your live application.
+
+11. **Monitor and Manage**
+
+    - Use the "Metrics" tab in Heroku to monitor your application's performance.
+    - View logs in the "More" dropdown menu by selecting "View logs" to troubleshoot any issues.
