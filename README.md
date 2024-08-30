@@ -84,6 +84,25 @@ Example:
 - **`store_result(guesses_sheet, player_name, number_of_guesses)`**: Saves the game session details in the `guesses` worksheet.
 - **`update_leaderboard(player_name, number_of_guesses, level)`**: Updates the leaderboard if the player's score is among the top 10. The leaderboard is sorted by the number of guesses, with the lowest number at the top.
 
+# Testing
+
+- **Manual Testing:** The game was tested manually with various inputs to ensure all features function as expected.
+- **Edge Cases:** Tested with invalid inputs, such as non-numeric entries, to ensure the game handles errors gracefully.
+- **PEP8 Compliance:** The code was linted using PEP8 to ensure compliance with Python coding standards.
+
+## Bugs
+
+### Solved Bugs
+
+- **Input Validation:** Fixed input issuse where special caracters and spaces were allowed
+- **Input Validation:** Fixed an issue where invalid inputs could crash the game.
+- **Leaderboard Update:** Resolved a bug where the leaderboard wasn't updating correctly after each game.
+
+### Remaining Bugs
+
+- None.
+
+
 ## Deployment
 
 The project was deployed using [Heroku](https://www.heroku.com/) following these steps:
