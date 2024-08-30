@@ -163,3 +163,18 @@ The project was deployed using [Heroku](https://www.heroku.com/) following these
 
     - Use the "Metrics" tab in Heroku to monitor your application's performance.
     - View logs in the "More" dropdown menu by selecting "View logs" to troubleshoot any issues.
+
+
+## Credits
+
+- **Content:** All game content and logic were developed by Robert Divkovic.
+- **Google Sheets API Documentation:** [Google Sheets API](https://developers.google.com/sheets/api) - Used for integrating Google Sheets with the game.
+
+### Code
+
+#### Inspiration
+- [Code Institute, Love Sandwiches](https://github.com/RobertDivkovic/love-sandwiches)
+#### Inspiration
+- [Stack Overflow] (https://stackoverflow.com/)
+
+## Thank you for playing "Guessing Game"!
